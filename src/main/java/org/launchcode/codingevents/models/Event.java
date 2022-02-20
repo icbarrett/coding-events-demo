@@ -1,8 +1,6 @@
 package org.launchcode.codingevents.models;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Objects;
 
 /**
@@ -24,11 +22,32 @@ public class Event {
     @Email(message = "Invalid email. Try again.")
     private String contactEmail;
 
-    public Event(String name, String description, String contactEmail) {
+    @NotNull(message = "Location is required")
+    @NotBlank(message = "Location is required")
+    private String location;
+
+    @AssertTrue(message = "This event must have attendees.")
+    private Boolean register = true;
+
+    @NotNull(message = "Minimum of 1 attendee.")
+    @Min(value = 1, message = "Minimum of 1 attendee.")
+    private Integer numOfAttendees;
+
+    @AssertTrue(message = "You must have food")
+    private Boolean isThereFood = true;
+
+    @NotNull(message = "Enter how many parking spots needed.")
+    private Integer numOfParking;
+
+    public Event(String name, String description,
+                 String contactEmail, String location, Integer numOfAttendees, Integer numOfParking) {
         this();
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
+        this.location = location;
+        this.numOfAttendees = numOfAttendees;
+        this.numOfParking = numOfParking;
     }
 
     public Event() {
@@ -58,6 +77,38 @@ public class Event {
 
     public void setContactEmail(String contactEmail) {
         this.contactEmail = contactEmail;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public Boolean getRegister() {
+        return register;
+    }
+
+    public void setRegister(Boolean register) {
+        this.register = register;
+    }
+
+    public Integer getNumOfAttendees() {
+        return numOfAttendees;
+    }
+
+    public void setNumOfAttendees(Integer numOfAttendees) {
+        this.numOfAttendees = numOfAttendees;
+    }
+
+    public Integer getNumOfParking() {
+        return numOfParking;
+    }
+
+    public void setNumOfParking(Integer numOfParking) {
+        this.numOfParking = numOfParking;
     }
 
     public int getId() {
