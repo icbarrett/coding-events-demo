@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Title</title>-->
-<!--</head>-->
 <head th:replace="fragments :: head"></head>
 
 <body class="container">
@@ -17,7 +13,7 @@
         <th>Name</th>
     </tr>
     </thead>
-    <tr th:each="category : ${Categories}">
+    <tr th:each="category : ${categories}">
         <td th:text="${category.id}"></td>
         <td th:text="${category.name}"></td>
     </tr>

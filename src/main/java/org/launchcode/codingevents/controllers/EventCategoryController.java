@@ -26,27 +26,27 @@ public class EventCategoryController {
     public String displayAllEvents(Model model) {
         model.addAttribute("title", "All Categories");
         model.addAttribute("categories", eventCategoryRepository.findAll());
-        return "index";
+        return "eventCategories/index";
     }
 
     @GetMapping("create")
     public String renderCreateEventCategoryForm(Model model) {
         model.addAttribute("title", "Create Category");
         model.addAttribute(new EventCategory());
-        return "index";
+        return "eventCategories/create";
     }
 
-    @PostMapping("eventCategories/create")
+    @PostMapping("create")
     public String processCreateEventCategoryForm(@ModelAttribute EventCategory newEventCategory,
                                                  Errors errors,
                                                  Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Category");
             model.addAttribute(new EventCategory());
-            return "create";
+            return "eventCategories/create";
         }
         eventCategoryRepository.save(newEventCategory);
-    return "redirect";
+    return "redirect:";
     }
 
 }
